@@ -29,7 +29,7 @@ Now in your Dart code, you can use:
 import 'package:imei_validator/imei_validator.dart';
 ```
 
-##Overview
+## Overview
 
 ```dart
 var imei = new ImeiValidator("378282246310005");
@@ -38,7 +38,7 @@ print(imei.isValid); // true
 
 Note: imei_validator will automatically remove any space or dashes from the string passed to it 
 
-###Check Digit
+### Check Digit
 
 You can calculate a check digit by creating a new ImeiValidator and passing in an meid (14 digits). The ImeiValidator will automatically calculate the check digit and make it available via the checkDigit getter.
 ```dart
