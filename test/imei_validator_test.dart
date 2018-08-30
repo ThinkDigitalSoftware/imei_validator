@@ -43,7 +43,7 @@ main() {
   //test 7
   test("Should return String", () {
     var imei = new ImeiValidator("5232132174");
-    expect(imei.toString(), equals('imei: 5232132174, valid: false'));
+    expect(imei.toString(), equals('IMEI: 5232132174, valid: false'));
   });
 
   //test 8

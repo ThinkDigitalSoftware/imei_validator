@@ -44,7 +44,7 @@ class ImeiValidator {
   Map<String, dynamic> toJson() => {"imei": this.Imei, "valid": this.isValid};
 
   ///Returns a String representation of the imei and its validity
-  String toString() => "imei: ${this.Imei}, valid: ${this.isValid}";
+  String toString() => "IMEI: ${this.Imei}, valid: ${this.isValid}";
 
   ///Validates the imei before processing it.
   void validate(String number) {
