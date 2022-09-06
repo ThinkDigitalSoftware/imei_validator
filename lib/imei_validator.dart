@@ -15,21 +15,21 @@ library imei_validator;
 ///If the total modulo 10 is equal to 0 (if the total ends in zero)
 ///then the number is valid according to the Luhn formula; else it is not valid.
 class ImeiValidator {
-  String Imei;
-  String _checkDigit;
+  late String Imei;
+  String? _checkDigit;
   bool isValid = false;
 
   ImeiValidator(String number) {
-    this.Imei = number.replaceAll(new RegExp(r"-|\s"), "");
-    this.validate(this.Imei);
+    Imei = number.replaceAll(new RegExp(r"-|\s"), "");
+    validate(Imei);
   }
 
   ImeiValidator.Integer(int number) {
-    this.Imei = number.toString();
-    this.validate(Imei);
+    Imei = number.toString();
+    validate(Imei);
   }
 
-  String get checkDigit => _checkDigit;
+  String? get checkDigit => _checkDigit;
 
   /// Returns the 14 digit MEID from the 15 digit IMEI
   String get Meid => Imei.substring(0, Imei.length - 1);
@@ -41,24 +41,23 @@ class ImeiValidator {
   }
 
   ///Returns a json representation of the imei and its validity
-  Map<String, dynamic> toJson() => {"imei": this.Imei, "valid": this.isValid};
+  Map<String, dynamic> toJson() => {"imei": Imei, "valid": isValid};
 
   ///Returns a String representation of the imei and its validity
-  String toString() => "IMEI: ${this.Imei}, valid: ${this.isValid}";
+  String toString() => "IMEI: ${Imei}, valid: ${isValid}";
 
   ///Validates the imei before processing it.
   void validate(String number) {
     if (number.isEmpty) throw new FormatException("IMEI cannot be empty");
-    if (int.tryParse(number) == null)
-      throw new FormatException("IMEI must contain only digits");
+    if (int.tryParse(number) == null) throw new FormatException("IMEI must contain only digits");
     // if it gets past all of this
     if (number.length == 14) {
       // for MEIDs
-      _checkDigit = luhnCalculate(number);
-      this.Imei += _checkDigit;
+      final checkDigit = luhnCalculate(number);
+      _checkDigit = checkDigit;
+      Imei += checkDigit;
     }
-    if (number.length == 14 || number.length == 15)
-      this.isValid = luhn_validate(Imei);
+    if (number.length == 14 || number.length == 15) isValid = luhn_validate(Imei);
   }
 
   /// Calculates the luhn check digit based off of `code` and return it.
