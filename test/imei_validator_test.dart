@@ -3,7 +3,7 @@ library imei_validator_test;
 import 'dart:convert' show json;
 
 import 'package:imei_validator/imei_validator.dart';
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 
 main() {
   //test 1
